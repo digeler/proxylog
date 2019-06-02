@@ -1,0 +1,1 @@
+Proxy log are in the storage account share you created.

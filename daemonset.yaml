@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: capture
+spec:
+  template:
+    metadata:
+      labels:
+        app: logging-app
+    spec:
+      nodeSelector:
+        beta.kubernetes.io/os: linux 
+      hostNetwork: true  
+      containers:
+        - name: capture-proxy
+          image: dinorg/prolog
+          command: ["/bin/sh"]
+          args: ["-c","while $(true); do cp /var/log/pods/$UID/kube-proxy/*.* /mnt/azure/plogshare/$MY_NODE_NAME; done"]
+          
+              
+             
+          env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: UID
+            value: {{ .Values.guid }}
+          volumeMounts:
+          - mountPath: /var/lib/docker/containers/
+            name: plogs
+            readOnly: false
+          - mountPath: /var/log/pods/{{ .Values.guid }}/kube-proxy
+            name: dock
+            readOnly: false
+          - mountPath: /mnt/azure/plogshare
+            name: azure
+            readOnly: false
+      volumes:     
+      - hostPath:
+          path: /var/lib/docker/containers/
+          type: ""
+        name: plogs
+      - hostPath: 
+          path: /var/log/pods/{{ .Values.guid }}/kube-proxy
+          type: ""
+        name: dock  
+      - name: azure
+        persistentVolumeClaim:
+          claimName: azurefile
+
+           
