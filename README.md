@@ -34,6 +34,10 @@ metadata:
   selfLink: /api/v1/namespaces/kube-system/pods/kube-proxy-kz56j
   uid: 5c5ab648-8504-11e9-b2e1-d21783ed20f2 <---- this is the value   
   to run :
+  
+  use this with rback : https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/aks/kubernetes-helm.md
+  
+  
   helm install prolog-0.1.0.tgz  --set sa=storage-accountname --set guid=guid  --debug
 helm install prolog-0.1.0.tgz  --set sa=proxylog --set guid=c7b5aa5b-847e-11e9-b2e1-d21783ed20f2  --debug
 
