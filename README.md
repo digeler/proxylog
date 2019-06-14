@@ -40,7 +40,7 @@ metadata:
   
   helm install prolog-0.1.0.tgz  --set sa=storage-accountname --set guid=guid  --debug
 helm install prolog-0.1.0.tgz  --set sa=proxylog --set guid=c7b5aa5b-847e-11e9-b2e1-d21783ed20f2  --debug
-
+for 1.14 UID=UID=kube-system_kube-proxy*   
 once done you will see the logs in the storage account.
 
 in the share folder.
