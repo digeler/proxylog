@@ -16,7 +16,18 @@ spec:
           image: dinorg/prolog
           command: ["/bin/sh"]
           args: ["-c","while $(true); do cp /var/log/pods/$UID/kube-proxy/*.* /mnt/azure/plogshare/$MY_NODE_NAME; done"]
-          
+          #for 1.14 uncomment:
+          #args: ["-c","while $(true); do cp /var/log/pods/$UID/kube-proxy/*.* /mnt/azure/plogshare/$MY_NODE_NAME; done"]
+          ##UID=kube-system_kube-proxy*          
+          # for 1.14 the directory struction is /var/log/pods
+        # default_dnstest-85f69986b-nk7ls_11364d2b-8eaa-11e9-960f-c2c752b96b98
+        # default_nginx-755464dd6c-6476g_acd6c3e8-8c12-11e9-bb61-6e8b42ef29ec
+        # default_zinc-snake-nginx-ingress-controller-55858ff67f-24wfq_4f03f656-8c14-11e9-bb61-6e8b42ef29ec
+        # default_zinc-snake-nginx-ingress-default-backend-7b9f5596fb-5kfsf_4f0c6012-8c14-11e9-bb61-6e8b42ef29ec
+        # kube-system_coredns-85c4d4c5d8-5b24b_667f2f49-8971-11e9-9b85-0632058a0a5a
+        # kube-system_coredns-85c4d4c5d8-ftczg_669af223-8971-11e9-9b85-0632058a0a5a
+        # kube-system_coredns-autoscaler-7b6f68868f-w2sfs_665d91b3-8971-11e9-9b85-0632058a0a5a
+        # ns_podname_guid
               
              
           env:
